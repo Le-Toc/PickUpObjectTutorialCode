@@ -1,13 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.AI;
 
 [RequireComponent(typeof(NavMeshAgent))]
 public class PlayerMotor : MonoBehaviour
 {
-    Transform target;       // Target to follow
-    NavMeshAgent agent;     // Reference to our agent
+    Transform target;                                                                                       // Target to follow
+    NavMeshAgent agent;                                                                                     // Reference to our agent
 
     // Use this for initialization
     void Start()
@@ -24,25 +22,25 @@ public class PlayerMotor : MonoBehaviour
         }
     }
 
-    public void MoveToPoint(Vector3 point)
+    public void MoveToPoint(Vector3 point)                                                                  //Takes in a vector 3
     {
-        agent.SetDestination(point);
+        agent.SetDestination(point);                                                                        //Set the destination of the agent using the point sent in
     }
 
-    public void FollowTarget(Interactable newTarget)
+    public void FollowTarget(Interactable newTarget)                                                        //Takes in an interactable
     {
-        agent.stoppingDistance = newTarget.radius * 0.8f;
-        agent.updateRotation = false;
+        agent.stoppingDistance = newTarget.radius * 0.8f;                                                   //Set the stopping distance of the agent to an 80% of the radius of the target
+        agent.updateRotation = false;                                                                       //Set updateRotation to false
 
-        target = newTarget.interactionTransform;
+        target = newTarget.interactionTransform;                                                            //Set the current target to the position of the new target
     }
 
-    public void StopFollowingTarget()
+    public void StopFollowingTarget()                                                                       //Stop the player from moving anymore
     {
-        agent.stoppingDistance = 0f;
-        agent.updateRotation = true;
+        agent.stoppingDistance = 0f;                                                                        //Set the stoppingDistance to 0
+        agent.updateRotation = true;                                                                        //Set updateRotation to true
 
-        target = null;
+        target = null;                                                                                      //Clear the target
     }
 
     void FaceTarget()
